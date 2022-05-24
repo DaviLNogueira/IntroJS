@@ -34,10 +34,15 @@ for (var i = 0; i < pacientes.length /*tamanho da lista*/  ; i++){
         tdImc.textContent = "Altura inválida"
     }
 
-    if(alturaehValido && pesoEhValido){
-        var imc =  peso / altura**2;
+
+    var imc ;
+    alturaehValido && pesoEhValido ?( // método ternário de if e else
+        imc = peso / altura**2,
         tdImc.textContent = imc.toFixed(2) //fixar apenas duas casas decimais 
-}
+    ):
+    (paciente.style.color = "white",
+    paciente.style.backgroundColor = "orange"
+    ); // altera o estilo da do css
 
 }
 
