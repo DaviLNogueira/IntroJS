@@ -9,6 +9,7 @@ botaoAdicionar.addEventListener("click",function(event){
     error = validaPaciente(paciente)
     if(error.length > 0){
         alert(error[0]);
+        return
     }
     else{
         var pacienteTr = montartr(paciente);
@@ -53,12 +54,18 @@ function validaPaciente(paciente){
 
     var erros = [];// criar um array de pesos
 
+    if (paciente.nome.textContent == ""){
+        erros.push("Campo nome vazio")
+    }
    if (!validaPeso(paciente.peso)){
-        erros.push("Peso é iválido"); // colocar elementos no array
+        erros.push("Peso é inválido"); // colocar elementos no array
    }
    if(!validaAltura(paciente.altura)){
         erros.push("Altura é inválida");
    }
+   if (paciente.nome.textContent == ""){
+    erros.push("Campo gordura vazio")
+}
    return erros;
      
 }
