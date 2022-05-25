@@ -42,7 +42,7 @@ function validaPeso(peso){
 }
 
 function validaAltura(altura){
-    return 3 >= altura > 0? true : false;
+    return  altura > 0 && altura < 3? true : false;
 }
 
 function calculaImc(peso,altura){

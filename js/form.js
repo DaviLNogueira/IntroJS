@@ -8,7 +8,7 @@ botaoAdicionar.addEventListener("click",function(event){
 
     error = validaPaciente(paciente)
     if(error.length > 0){
-        alert(error[0]);
+        alert(error);
     }
     else{
         var pacienteTr = montartr(paciente);
@@ -50,15 +50,17 @@ function montaTd(dado,classe){
 }
 
 function validaPaciente(paciente){
+    if (paciente.nome.length == 0){
+        return "Campo nome está vazio"
+    }
 
-    var erros = [];// criar um array de pesos
-
+    if (paciente.nome.length == 0 ){
+        return "Campo gordura está vazio"
+    }
    if (!validaPeso(paciente.peso)){
-        erros.push("Peso é iválido"); // colocar elementos no array
+        return "Peso é inválido"; // colocar elementos no array
    }
    if(!validaAltura(paciente.altura)){
-        erros.push("Altura é inválida");
-   }
-   return erros;
-     
+        return "Altura é inválida";
+   }     
 }
