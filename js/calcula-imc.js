@@ -37,8 +37,8 @@ for (var i = 0; i < pacientes.length /*tamanho da lista*/  ; i++){
 
     var imc ;
     alturaehValido && pesoEhValido ?( // método ternário de if e else
-        imc = peso / altura**2,
-        tdImc.textContent = imc.toFixed(2) //fixar apenas duas casas decimais 
+        imc = calculaImc(peso,altura),
+        tdImc.textContent = imc 
     ):
     (paciente.classList.add("paciente-invalido") // adiciona uma classe no html, recomenda não mudar o visual pelo js, e sim pelo css 
     
@@ -46,6 +46,10 @@ for (var i = 0; i < pacientes.length /*tamanho da lista*/  ; i++){
 
     
 }
-function mostraMensagem(){ //quando chamada a função no evento , temos não precisamos dos parêntestes , pois não queremos imediatamente chamar a função 
-    console.log("Eu fui clicado!");
+
+
+function calculaImc(peso,altura){
+    var imc = 0 ;
+    imc = peso / altura**2;
+    return imc.toFixed(2);
 };
