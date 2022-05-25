@@ -75,6 +75,7 @@
 			<!-- ... -->
 <section class="container">
     <h2 id="titulo-form">Adicionar novo paciente</h2>
+	<ul id="mensagem-erro"></ul>
     <form id="form-adiciona">
         <div class="grupo">
             <label for="nome">Nome:</label>
@@ -82,11 +83,11 @@
         </div>
         <div class="grupo">
             <label for="peso">Peso:</label>
-            <input id="peso" name="peso" type="text" placeholder="digite o peso do seu paciente" class="campo campo-medio">
+            <input id="peso" name="peso" type="text" placeholder="digite o peso do seu paciente" class="campo campo-medio" required>
         </div>
         <div class="grupo">
             <label for="altura">Altura:</label>
-            <input id="altura" name="altura" type="text" placeholder="digite a altura do seu paciente" class="campo campo-medio">
+            <input id="altura" name="altura" type="text" placeholder="digite a altura do seu paciente" class="campo campo-medio" required>
         </div>
         <div class="grupo">
             <label for="gordura">% de Gordura:</label>

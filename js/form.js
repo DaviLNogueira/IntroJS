@@ -4,21 +4,19 @@ botaoAdicionar.addEventListener("click",function(event){
     event.preventDefault();
     
     var form = document.querySelector("#form-adiciona");
-    var paciente = obtemPacientedoFormulario(form)
-    if(validaPaciente(paciente)){
-        var pacienteTr = montartr(paciente)
-        
-        var tabela = document.querySelector("#tabela-pacientes");
-        tabela.appendChild(pacienteTr);
+    var paciente = obtemPacientedoFormulario(form);
 
-        form.reset();
+    error = validaPaciente(paciente)
+    if(error.length > 0){
+        alert(error[0]);
     }
     else{
-        alert("Inserção de dados inválidos");
-    }
-    
+        var pacienteTr = montartr(paciente);
+        var tabela = document.querySelector("#tabela-pacientes");
+        tabela.appendChild(pacienteTr);
+        form.reset();
+    } 
 })
-
 function obtemPacientedoFormulario(form){
     var paciente = { // criando objetos com Js
         nome : form.nome.value,
@@ -52,6 +50,15 @@ function montaTd(dado,classe){
 }
 
 function validaPaciente(paciente){
-    return validaAltura(paciente.altura) && validaPeso(paciente.peso) ? true : false; 
-    
+
+    var erros = [];// criar um array de pesos
+
+   if (!validaPeso(paciente.peso)){
+        erros.push("Peso é iválido"); // colocar elementos no array
+   }
+   if(!validaAltura(paciente.altura)){
+        erros.push("Altura é inválida");
+   }
+   return erros;
+     
 }
