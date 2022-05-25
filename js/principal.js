@@ -6,7 +6,7 @@
 var titulo = document.querySelector(".titulo");//uma boa prática é colocar por classes ou ids pq pode mudar o html			
 titulo.textContent = "Aparecida Nutricionista"/*altera a exibição do título*/
 
-var pacientes = document.querySelectorAll(".paciente"); // seleciona toda a classe e ide e retorna uma lista 
+var pacientes = document.querySelectorAll(".paciente"); // seleciona toda a classe e ide e retorna uma lista(.classList) 
 
 for (var i = 0; i < pacientes.length /*tamanho da lista*/  ; i++){
 
@@ -40,11 +40,19 @@ for (var i = 0; i < pacientes.length /*tamanho da lista*/  ; i++){
         imc = peso / altura**2,
         tdImc.textContent = imc.toFixed(2) //fixar apenas duas casas decimais 
     ):
-    (paciente.style.color = "white",
-    paciente.style.backgroundColor = "orange"
-    ); // altera o estilo da do css
+    (paciente.classList.add("paciente-invalido") // adiciona uma classe no html, recomenda não mudar o visual pelo js, e sim pelo css 
+    
+    ); 
 
+    
 }
+function mostraMensagem(){ 
+    console.log("Eu fui clicado!");
+};
 
+var botaoAdicionar = document.querySelector("#adicionar-paciente");
 
-
+botaoAdicionar.addEventListener("click",function(){//"escuta alguns tipo de evento,sempre colocar uma ação
+    event.preventDefault(); //previne o comportamento padrão
+    console.log("Fui clicado!")
+})
