@@ -5,24 +5,36 @@ botaoAdicionar.addEventListener("click",function(event){
     
     var form = document.querySelector("#form-adiciona");
     var paciente = obtemPacientedoFormulario(form);
-
-    error = validaPaciente(paciente)
-    if(error.length > 0){
-        alert(error[0]);
-        return
-    }
-    else{
         adicionaPacienteNaTabela(paciente)
-        
         form.reset();
-    } 
 })
 
 function adicionaPacienteNaTabela(paciente){
     var pacienteTr = montartr(paciente);
+    
+    var erros = validaPaciente(paciente);
+    console.log(erros);
+    if(erros.length > 0){
+        exibeMensagensErros(erros)
+        return;
+
+    }
+    var mensagensErro = document.querySelector("#mesagens-erros");
+    mensagensErro.innerHTML = "";
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
 
+}
+function exibeMensagensErros(erros){
+    
+    var ul = document.querySelector("#mesagens-erros")
+    ul.innerHTML = ""
+    erros.forEach(function(erro){
+        var li = document.createElement("li");
+        li.textContent = erro;
+        console.log(ul.value);
+        ul.appendChild(li);
+    })
 }
 
 function obtemPacientedoFormulario(form){
@@ -58,21 +70,21 @@ function montaTd(dado,classe){
 }
 
 function validaPaciente(paciente){
+    erros = []
 
-    var erros = [];// criar um array de pesos
-
-    if (paciente.nome.textContent == ""){
-        erros.push("Campo nome vazio")
+    if(paciente.nome.length == 0){
+        erros.push("Campo nome está vazio")
     }
-   if (!validaPeso(paciente.peso)){
-        erros.push("Peso é inválido"); // colocar elementos no array
-   }
-   if(!validaAltura(paciente.altura)){
-        erros.push("Altura é inválida");
-   }
-   if (paciente.nome.textContent == ""){
-    erros.push("Campo gordura vazio")
-}
-   return erros;
-     
+
+    if(paciente.gordura.length == 0){
+        erros.push("Campo gordura está vazio");
+    }
+
+    if(!validaPeso(paciente.peso)){
+        erros.push("O peso está inválido");
+    }
+    if(!validaAltura(paciente.altura)){
+        erros.push("A altura está inválido")
+    }
+    return erros
 }
