@@ -9,7 +9,7 @@ campoFiltro.addEventListener("input",function(){ // selecionar o campo de input 
             var paciente = pacientes[i];
             var tdNome = paciente.querySelector(".info-nome");
             var nome = tdNome.textContent;
-            var expressao = new RegExp(this.value,"i")//i é para case insetive, new RegExp usada para expressões regulares
+            var expressao = new RegExp(this.value,"i")//1° parametro é o que deve ser buscado , 2° parametro são umas ou mais flags(como queremos que a expressão busque)
             if(!expressao.test(nome)){/*buscar um pedaço da expressão*/
 
                 paciente.classList.add("invisivel");
